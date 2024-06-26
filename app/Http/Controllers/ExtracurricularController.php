@@ -13,7 +13,12 @@ class ExtracurricularController extends Controller
      */
     public function index()
     {
-        //
+        $extracurriculars = Extracurricular::query()
+                            ->latest()
+                            ->paginate(10);
+        return view('pages.extracurricular.index', [
+            'extracurriculars' => $extracurriculars,
+        ]);
     }
 
     /**
@@ -21,7 +26,7 @@ class ExtracurricularController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.extracurricular.create');
     }
 
     /**
@@ -29,7 +34,11 @@ class ExtracurricularController extends Controller
      */
     public function store(StoreExtracurricularRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        Extracurricular::create($validated);
+
+        return to_route('extracurricular.index');
     }
 
     /**
@@ -43,24 +52,32 @@ class ExtracurricularController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Extracurricular $extracurricular)
+    public function edit(Extracurricular $ekskul)
     {
-        //
+        // dd($ekskul);
+        return view('pages.extracurricular.edit', [
+            'extracurricular' => $ekskul,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateExtracurricularRequest $request, Extracurricular $extracurricular)
+    public function update(UpdateExtracurricularRequest $request, Extracurricular $ekskul)
     {
-        //
+        $validated = $request->validated();
+
+        $ekskul->update($validated);
+
+        return to_route('extracurricular.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Extracurricular $extracurricular)
+    public function destroy(Extracurricular $ekskul)
     {
-        //
+        $ekskul->delete();
+        return to_route('extracurricular.index');
     }
 }

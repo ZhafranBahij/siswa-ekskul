@@ -1,0 +1,52 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Ekskul') }}</div>
+
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    <a href="{{ route('extracurricular.create') }}">Tambah Ekskul</a>
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Action</th>
+                            <th scope="col">Nama</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($extracurriculars as $item)
+                                <tr>
+                                <th scope="row">{{ $item->id }}</th>
+                                <td>
+                                    <a href="{{ route('extracurricular.edit', $item->id) }}" >
+                                        Edit
+                                    </a>
+                                    <form action="{{ route('extracurricular.destroy', $item->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </td>
+                                <td>{{ $item->name }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                      </table>
+                      {{ $extracurriculars->links() }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
