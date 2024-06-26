@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ExtracurricularController;
+use App\Http\Controllers\ExtraCurricularStudentController;
 use App\Http\Controllers\StudentController;
 use App\Models\Extracurricular;
 use Illuminate\Support\Facades\Route;
@@ -16,4 +17,5 @@ Route::middleware('auth')->group(function () {
     // Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('siswa', StudentController::class)->names('student');
     Route::resource('ekskul', ExtracurricularController::class)->names('extracurricular');
+    Route::resource('siswa_ekskul', ExtraCurricularStudentController::class)->names('extracurricular-student');
 });

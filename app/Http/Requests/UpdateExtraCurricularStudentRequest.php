@@ -11,7 +11,7 @@ class UpdateExtraCurricularStudentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class UpdateExtraCurricularStudentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'student_id' => 'required',
+            'extracurricular_id' => 'required',
+            'tahun_bergabung' => 'required',
         ];
     }
 }

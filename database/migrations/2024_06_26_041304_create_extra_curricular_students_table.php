@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Extracurricular::class);
             $table->foreignIdFor(Student::class);
-            $table->year('tahun_bergabung');
+            $table->string('tahun_bergabung');
             $table->timestamps();
         });
     }

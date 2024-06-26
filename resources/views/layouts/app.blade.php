@@ -31,7 +31,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        <li class="mx-2">
+                            <a href="{{ route('student.index') }}">Siswa</a>
+                        </li>
+                        <li class="mx-2">
+                            <a href="{{ route('extracurricular.index') }}">Ekskul</a>
+                        </li>
+                        <li class="mx-2">
+                            <a href="{{ route('extracurricular-student.index') }}">Siswa Ikut Ekskul</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

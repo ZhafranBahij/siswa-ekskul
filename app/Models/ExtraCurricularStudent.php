@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class ExtraCurricularStudent extends Model
 {
     use HasFactory;
+
+    public function student(){
+        return $this->belongsTo(Student::class);
+    }
+
+    public function extracurricular()
+    {
+        return $this->belongsTo(Extracurricular::class);
+    }
+
 }
